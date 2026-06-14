@@ -626,8 +626,8 @@
     /* ===== Loader Flashcards ===== */
     .loader-flashcard {
       position: absolute;
-      width: 10.175%;
-      height: 18.23%;
+      width: 11.119%;
+      height: 22.852%;
       background-image: url('card-base.png');
       background-size: 100% 100%;
       background-position: center;
@@ -650,6 +650,9 @@
       padding: 8% 7%;
       box-sizing: border-box;
       text-align: center;
+    }
+    .loader-flashcard.active {
+      opacity: 1;
     }
     .loader-flashcard::before {
       content: "";
@@ -681,7 +684,7 @@
 
     /* Icon wrappers & animations inside flashcards */
     .fc-icon-wrapper {
-      width: 38%;
+      width: 34.3%;
       aspect-ratio: 1;
       margin-bottom: 6%;
       display: flex;
@@ -757,10 +760,10 @@
     }
 
     /* Positions for flashcards aligned inside empty background slots */
-    .fc-1 { left: 10.174%; top: 18.223%; }
-    .fc-2 { right: 10.174%; top: 18.223%; }
-    .fc-3 { left: 10.174%; top: 63.548%; }
-    .fc-4 { right: 10.174%; top: 63.548%; }
+    .fc-1 { left: 9.085%; top: 16.276%; }
+    .fc-2 { right: 9.085%; top: 16.276%; }
+    .fc-3 { left: 9.085%; top: 60.872%; }
+    .fc-4 { right: 9.085%; top: 60.872%; }
 
     /* Active states when progress reaches thresholds - sequential 3D spin entrance + float */
     .fc-1.active {
