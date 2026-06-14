@@ -511,12 +511,12 @@
     }
     .loader-portrait-wrapper {
       position: absolute;
-      width: 82%;
+      width: 52%;
       aspect-ratio: 1;
       border-radius: 50%;
       overflow: hidden;
       z-index: 1;
-      top: 50%; left: 50%;
+      top: 50.5%; left: 50%;
       transform: translate(-50%, -50%);
       opacity: 0;
       animation: seal-in-portrait 1.1s var(--ease) forwards 0.35s;
@@ -524,8 +524,8 @@
     .loader-portrait-img {
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center 16%;
-      transform: scale(1.3);
+      object-position: center 15%;
+      transform: scale(1.15);
       transform-origin: center 25%;
       filter: saturate(1.06) contrast(1.04) brightness(1.05);
     }
@@ -900,7 +900,7 @@
         height: 44.02vh;
       }
       .loader-portrait-wrapper {
-        width: 82%;
+        width: 52%;
         height: auto;
         aspect-ratio: 1;
       }
