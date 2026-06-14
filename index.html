@@ -393,7 +393,7 @@
       background:
         radial-gradient(120% 90% at 50% 36%, rgba(214, 178, 112, 0.15), transparent 58%),
         radial-gradient(64% 60% at 50% 44%, rgba(44, 35, 19, 0.65), transparent 72%),
-        url('arkaplan.jpg') center/cover no-repeat;
+        url('arkaplan.jpg') center/100% 100% no-repeat;
       transition: transform 1s var(--ease) 0.45s;
       /* failsafe: never block content even if JS does not run */
       animation: loader-failsafe 0.1s linear 6.5s forwards;
@@ -599,8 +599,8 @@
     /* ===== Loader Flashcards ===== */
     .loader-flashcard {
       position: absolute;
-      width: 240px;
-      height: 275px;
+      width: 280px;
+      height: 320px;
       background-image: url('card-base.png');
       background-size: 100% 100%;
       background-position: center;
@@ -653,9 +653,9 @@
 
     /* Icon wrappers & animations inside flashcards */
     .fc-icon-wrapper {
-      width: 105px;
-      height: 105px;
-      margin-bottom: 12px;
+      width: 120px;
+      height: 120px;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -729,10 +729,10 @@
     }
 
     /* Positions for flashcards centered around central column */
-    .fc-1 { left: calc(50% - 480px); top: 18%; }
-    .fc-2 { right: calc(50% - 480px); top: 23%; }
-    .fc-3 { left: calc(50% - 480px); top: 52%; }
-    .fc-4 { right: calc(50% - 480px); top: 57%; }
+    .fc-1 { left: calc(23.5% - 140px); top: calc(22.8% - 160px); }
+    .fc-2 { right: calc(23.5% - 140px); top: calc(27.8% - 160px); }
+    .fc-3 { left: calc(23.5% - 140px); top: calc(64.8% - 160px); }
+    .fc-4 { right: calc(23.5% - 140px); top: calc(69.8% - 160px); }
 
     /* Active states when progress reaches thresholds - sequential 3D spin entrance + float */
     .fc-1.active {
