@@ -586,13 +586,28 @@
       opacity: 0;
       animation: loader-fade 0.9s ease forwards 1.2s;
     }
+    .loader-name {
+      position: absolute;
+      left: 50%;
+      top: 80.5%;
+      transform: translate(-50%, -50%);
+      font-family: var(--display);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-indent: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      opacity: 0;
+      animation: loader-fade 0.9s ease forwards 1.3s;
+    }
     @keyframes loader-fade { to { opacity: 1; } }
 
     /* — progress meter + ticking percentage — */
     .loader-meter {
       position: absolute;
       left: 50%;
-      top: 81.5%;
+      top: 84.5%;
       transform: translate(-50%, -50%);
       width: 340px; height: 8px;
       border: 1.5px solid rgba(200, 168, 106, 0.4);
@@ -614,7 +629,7 @@
     .loader-count {
       position: absolute;
       left: 50%;
-      top: 86%;
+      top: 88.5%;
       transform: translate(-50%, -50%);
       font-family: var(--display);
       font-size: 1.1rem;
@@ -886,6 +901,7 @@
       }
       .loader-wordmark,
       .loader-sub,
+      .loader-name,
       .loader-meter,
       .loader-count {
         position: relative;
@@ -894,6 +910,7 @@
         transform: none;
       }
       .loader-sub { margin-top: -4px; }
+      .loader-name { margin-top: -8px; font-size: 0.8rem; }
       .loader-meter { margin-top: 14px; }
       .loader-flashcard {
         width: 200px;
@@ -2019,6 +2036,7 @@
         </div>
         <div class="loader-wordmark" id="loaderWordmark" data-word="ASILZADE" aria-label="Asilzade"></div>
         <div class="loader-sub">FULL-STACK DEVELOPER</div>
+        <div class="loader-name">FIRAT AKYOL</div>
         <div class="loader-meter"><span class="loader-bar" id="loaderBar"></span></div>
         <div class="loader-count"><span id="loaderPct">0</span><i>%</i></div>
       </div>
