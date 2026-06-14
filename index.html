@@ -509,7 +509,7 @@
     }
     .loader-portrait-wrapper {
       position: absolute;
-      width: 43.48%;
+      width: 58%;
       aspect-ratio: 1;
       border-radius: 50%;
       overflow: hidden;
@@ -647,7 +647,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 8% 7%;
+      padding: calc(min(100vw, 179.17vh) * 0.008) calc(min(100vw, 179.17vh) * 0.007);
       box-sizing: border-box;
       text-align: center;
     }
@@ -684,9 +684,9 @@
 
     /* Icon wrappers & animations inside flashcards */
     .fc-icon-wrapper {
-      width: 34.3%;
+      width: calc(min(100vw, 179.17vh) * 0.038);
       aspect-ratio: 1;
-      margin-bottom: 6%;
+      margin-bottom: calc(min(100vw, 179.17vh) * 0.007);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -737,25 +737,25 @@
 
     .loader-flashcard .fc-label {
       color: #9f8c6b;
-      font-size: 5cqi;
+      font-size: calc(min(100vw, 179.17vh) * 0.0055);
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: calc(min(100vw, 179.17vh) * 0.002);
       display: block;
       opacity: 0.85;
     }
     .loader-flashcard .fc-value {
       color: #f1dcab;
       font-family: var(--display);
-      font-size: 7.5cqi;
+      font-size: calc(min(100vw, 179.17vh) * 0.0085);
       font-weight: 700;
       line-height: 1.25;
       display: block;
       text-shadow: 0 0 10px rgba(241, 220, 171, 0.4);
     }
     .fc-1 .fc-value {
-      font-size: 7cqi;
+      font-size: calc(min(100vw, 179.17vh) * 0.0078);
       margin-left: 6px;
     }
 
