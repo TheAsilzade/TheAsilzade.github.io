@@ -391,9 +391,9 @@
       place-items: center;
       overflow: hidden;
       background:
-        radial-gradient(120% 90% at 50% 36%, rgba(214, 178, 112, 0.11), transparent 58%),
-        radial-gradient(64% 60% at 50% 44%, rgba(44, 35, 19, 0.5), transparent 72%),
-        linear-gradient(180deg, #0b0810 0%, #070509 52%, #040305 100%);
+        radial-gradient(120% 90% at 50% 36%, rgba(214, 178, 112, 0.15), transparent 58%),
+        radial-gradient(64% 60% at 50% 44%, rgba(44, 35, 19, 0.65), transparent 72%),
+        url('arkaplan.jpg') center/cover no-repeat;
       transition: transform 1s var(--ease) 0.45s;
       /* failsafe: never block content even if JS does not run */
       animation: loader-failsafe 0.1s linear 6.5s forwards;
@@ -426,6 +426,37 @@
       opacity: 0;
       transition: opacity 0.3s ease 0.4s;
       pointer-events: none;
+    }
+    .loader-connectors {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .connector-line-glow {
+      fill: none;
+      stroke: url(#goldGlowGradient);
+      stroke-width: 2px;
+      filter: drop-shadow(0 0 4px rgba(233, 208, 154, 0.6));
+      opacity: 0.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .connector-line-pulse {
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2.5px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 12 160;
+      animation: pulse-flow 3.5s linear infinite;
+      filter: drop-shadow(0 0 3px var(--gold-bright));
+    }
+    @keyframes pulse-flow {
+      0% { stroke-dashoffset: 172; }
+      100% { stroke-dashoffset: -172; }
     }
     body.loaded .atelier-loader { transform: translateY(-100%); }
     body.loaded .atelier-loader::after { opacity: 1; }
@@ -1895,6 +1926,15 @@
 <body>
   <!-- Cinematic noble-house loader: The Seal of the House -->
   <div class="atelier-loader" id="atelierLoader" role="presentation" aria-hidden="true">
+    <svg class="loader-connectors" id="loaderConnectors">
+      <defs>
+        <linearGradient id="goldGlowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fff4d0" />
+          <stop offset="50%" stop-color="#e9d09a" />
+          <stop offset="100%" stop-color="#b89149" />
+        </linearGradient>
+      </defs>
+    </svg>
     <div class="loader-inner">
       <div class="loader-emblem">
         <div class="loader-portrait-wrapper">
@@ -3314,6 +3354,68 @@
         }, 220);
         window.addEventListener('load', () => { pageLoaded = true; target = 100; });
 
+        function updateLoaderConnectors() {
+          const svg = document.getElementById('loaderConnectors');
+          if (!svg) return;
+          
+          const paths = svg.querySelectorAll('path, circle');
+          paths.forEach(p => p.remove());
+
+          const emblem = loader.querySelector('.loader-emblem');
+          const cards = [
+            loader.querySelector('.fc-1'),
+            loader.querySelector('.fc-2'),
+            loader.querySelector('.fc-3'),
+            loader.querySelector('.fc-4')
+          ];
+
+          if (!emblem || cards.some(c => !c)) return;
+
+          const svgRect = svg.getBoundingClientRect();
+          const emblemRect = emblem.getBoundingClientRect();
+
+          const emblemCenterX = emblemRect.left + emblemRect.width / 2 - svgRect.left;
+          const emblemCenterY = emblemRect.top + emblemRect.height / 2 - svgRect.top;
+
+          cards.forEach((card, index) => {
+            if (!card.classList.contains('active')) return;
+
+            const cardRect = card.getBoundingClientRect();
+            const cardCenterX = cardRect.left + cardRect.width / 2 - svgRect.left;
+            const cardCenterY = cardRect.top + cardRect.height / 2 - svgRect.top;
+
+            const isLeft = cardCenterX < emblemCenterX;
+            const x1 = isLeft ? (emblemCenterX - 110) : (emblemCenterX + 110);
+            const y1 = emblemCenterY + (index === 0 || index === 1 ? -45 : 45);
+
+            const x2 = isLeft ? (cardRect.right - svgRect.left) : (cardRect.left - svgRect.left);
+            const y2 = cardCenterY;
+
+            const xTurn = isLeft ? (x1 - 60) : (x1 + 60);
+            const pathData = `M ${x1} ${y1} L ${xTurn} ${y1} L ${x2} ${y2}`;
+
+            const glowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            glowPath.setAttribute('d', pathData);
+            glowPath.setAttribute('class', 'connector-line-glow');
+            svg.appendChild(glowPath);
+
+            const pulsePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            pulsePath.setAttribute('d', pathData);
+            pulsePath.setAttribute('class', 'connector-line-pulse');
+            svg.appendChild(pulsePath);
+
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', x2);
+            circle.setAttribute('cy', y2);
+            circle.setAttribute('r', '4.5');
+            circle.setAttribute('fill', '#ffffff');
+            circle.setAttribute('filter', 'drop-shadow(0 0 3px var(--gold-bright))');
+            svg.appendChild(circle);
+          });
+        }
+
+        window.addEventListener('resize', updateLoaderConnectors);
+
         const render = (p) => {
           if (arc) arc.style.strokeDashoffset = (C * (1 - p / 100)).toFixed(2);
           if (bar) bar.style.width = p + '%';
@@ -3326,15 +3428,21 @@
           const fc3 = loader.querySelector('.fc-3');
           const fc4 = loader.querySelector('.fc-4');
 
-          if (fc1 && rounded >= 15) fc1.classList.add('active');
-          if (fc2 && rounded >= 40) fc2.classList.add('active');
-          if (fc3 && rounded >= 65) fc3.classList.add('active');
-          if (fc4 && rounded >= 85) fc4.classList.add('active');
+          let changed = false;
+          if (fc1 && rounded >= 15 && !fc1.classList.contains('active')) { fc1.classList.add('active'); changed = true; }
+          if (fc2 && rounded >= 40 && !fc2.classList.contains('active')) { fc2.classList.add('active'); changed = true; }
+          if (fc3 && rounded >= 65 && !fc3.classList.contains('active')) { fc3.classList.add('active'); changed = true; }
+          if (fc4 && rounded >= 85 && !fc4.classList.contains('active')) { fc4.classList.add('active'); changed = true; }
+
+          if (changed) {
+            updateLoaderConnectors();
+          }
         };
 
         const finish = () => {
           if (done) return;
           done = true;
+          window.removeEventListener('resize', updateLoaderConnectors);
           window.clearInterval(creep);
           render(100);
           document.body.classList.add('loaded'); // theatre-curtain lift
