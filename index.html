@@ -592,12 +592,15 @@
       top: 80.5%;
       transform: translate(-50%, -50%);
       font-family: var(--display);
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.28em;
-      text-indent: 0.28em;
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: 0.32em;
+      text-indent: 0.32em;
       text-transform: uppercase;
-      color: var(--gold-bright);
+      background: var(--gold-leaf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 10px rgba(233, 208, 154, 0.5));
       opacity: 0;
       animation: loader-fade 0.9s ease forwards 1.3s;
     }
@@ -910,7 +913,7 @@
         transform: none;
       }
       .loader-sub { margin-top: -4px; }
-      .loader-name { margin-top: -8px; font-size: 0.8rem; }
+      .loader-name { margin-top: -8px; font-size: 1.15rem; font-weight: 800; }
       .loader-meter { margin-top: 14px; }
       .loader-flashcard {
         width: 200px;
