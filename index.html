@@ -387,8 +387,6 @@
       position: fixed;
       inset: 0;
       z-index: 9000;
-      display: grid;
-      place-items: center;
       overflow: hidden;
       background: #050406;
       transition: transform 1s var(--ease) 0.45s;
@@ -400,11 +398,8 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      max-width: 179.167vh;
-      max-height: 55.815vw;
-      aspect-ratio: 2752 / 1536;
+      width: min(100vw, 179.167vh);
+      height: min(100vh, 55.815vw);
       background:
         radial-gradient(120% 90% at 50% 36%, rgba(214, 178, 112, 0.15), transparent 58%),
         radial-gradient(64% 60% at 50% 44%, rgba(44, 35, 19, 0.65), transparent 72%),
@@ -412,6 +407,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 1;
     }
     /* slow light sweeping behind the seal */
     .atelier-loader::before {
@@ -478,18 +474,18 @@
     @keyframes loader-failsafe { to { opacity: 0; visibility: hidden; } }
 
     .loader-inner {
-      position: relative;
+      position: absolute;
+      inset: 0;
       z-index: 1;
-      display: grid;
-      justify-items: center;
-      gap: 26px;
-      text-align: center;
       transition: opacity 0.5s ease, transform 0.6s var(--ease);
     }
     body.loaded .loader-inner { opacity: 0; transform: translateY(-26px) scale(1.04); }
 
     .loader-emblem {
-      position: relative;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       width: 16.71%;
       height: 27.99%;
       display: flex;
@@ -553,6 +549,10 @@
 
     /* — wordmark (letters injected by JS) — */
     .loader-wordmark {
+      position: absolute;
+      left: 50%;
+      top: 68%;
+      transform: translate(-50%, -50%);
       display: flex;
       font-family: var(--display);
       font-size: 2.2rem;
@@ -570,7 +570,10 @@
     @keyframes letter-in { to { opacity: 1; transform: translateY(0); } }
 
     .loader-sub {
-      margin-top: -4px;
+      position: absolute;
+      left: 50%;
+      top: 72%;
+      transform: translate(-50%, -50%);
       font-family: var(--body);
       font-size: 0.72rem;
       font-weight: 600;
@@ -585,9 +588,11 @@
 
     /* — progress meter + ticking percentage — */
     .loader-meter {
-      position: relative;
+      position: absolute;
+      left: 50%;
+      top: 76.5%;
+      transform: translate(-50%, -50%);
       width: 340px; height: 8px;
-      margin-top: 14px;
       border: 1.5px solid rgba(200, 168, 106, 0.4);
       background: rgba(10, 9, 12, 0.85);
       border-radius: 999px;
@@ -605,6 +610,10 @@
       transition: width 0.2s ease;
     }
     .loader-count {
+      position: absolute;
+      left: 50%;
+      top: 81%;
+      transform: translate(-50%, -50%);
       font-family: var(--display);
       font-size: 1.1rem;
       letter-spacing: 0.2em;
@@ -847,7 +856,21 @@
           radial-gradient(64% 60% at 50% 44%, rgba(44, 35, 19, 0.65), transparent 72%),
           url('background.jpg') center/cover no-repeat;
       }
+      .loader-inner {
+        position: relative;
+        inset: auto;
+        width: auto;
+        height: auto;
+        display: grid;
+        justify-items: center;
+        gap: 26px;
+        transform: none;
+      }
       .loader-emblem {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
         width: 31.4vw;
         height: 44.02vh;
       }
@@ -856,6 +879,17 @@
         height: 200px;
         aspect-ratio: auto;
       }
+      .loader-wordmark,
+      .loader-sub,
+      .loader-meter,
+      .loader-count {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+      }
+      .loader-sub { margin-top: -4px; }
+      .loader-meter { margin-top: 14px; }
       .loader-flashcard {
         width: 200px;
         height: 230px;
