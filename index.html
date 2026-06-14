@@ -388,7 +388,9 @@
       inset: 0;
       z-index: 9000;
       overflow: hidden;
-      background: #050406;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(10, 9, 12, 0.4), #050406 90%),
+        url('background.jpg') center/cover no-repeat;
       transition: transform 1s var(--ease) 0.45s;
       /* failsafe: never block content even if JS does not run */
       animation: loader-failsafe 0.1s linear 6.5s forwards;
