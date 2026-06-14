@@ -1,25 +1,14 @@
-# ==========================================
-# FIRAT AKYOL (ASILZADE) - ADVANCED ROBOTS.TXT
-# Optimized for Global Search & LLM / AI Crawlers
-# ==========================================
-
-# 1. MAIN DIRECTIVES FOR ALL STANDARD BOTS
 User-agent: *
 Allow: /
-Allow: /llms.txt
-Allow: /index.html
 
-# 2. AI & LLM CRAWLERS (Explicit Priority Allowances)
-# Allowing OpenAI, Anthropic, Google, and other major AI agents
-# to fully read the site logic, LLM summaries, and metadata.
+Sitemap: https://firatakyol.dev/sitemap.xml
 
+# AI Training & Retrieval Crawlers — explicitly permitted
 User-agent: GPTBot
 Allow: /
-Allow: /llms.txt
 
 User-agent: ChatGPT-User
 Allow: /
-Allow: /llms.txt
 
 User-agent: OAI-SearchBot
 Allow: /
@@ -33,9 +22,11 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: CCBot
+Allow: /
+
 User-agent: Google-Extended
 Allow: /
-Allow: /llms.txt
 
 User-agent: Gemini
 Allow: /
@@ -52,38 +43,24 @@ Allow: /
 User-agent: YouBot
 Allow: /
 
-User-agent: CCBot
-Allow: /
-
-User-agent: Diffbot
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
 User-agent: Meta-ExternalAgent
 Allow: /
 
 User-agent: Meta-ExternalFetcher
 Allow: /
 
-# 3. MAJOR SEARCH ENGINES
+User-agent: Bytespider
+Allow: /
+
+# Standard search crawlers
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Yandex
-Allow: /
-Clean-param: utm_source&utm_medium&utm_campaign
-
 User-agent: Slurp
 Allow: /
 
 User-agent: DuckDuckBot
 Allow: /
-
-# 4. SITEMAP & HOST DEFINITION
-Host: https://firatakyol.dev
-Sitemap: https://firatakyol.dev/sitemaps.xml
