@@ -390,13 +390,28 @@
       display: grid;
       place-items: center;
       overflow: hidden;
-      background:
-        radial-gradient(120% 90% at 50% 36%, rgba(214, 178, 112, 0.15), transparent 58%),
-        radial-gradient(64% 60% at 50% 44%, rgba(44, 35, 19, 0.65), transparent 72%),
-        url('arkaplan.jpg') center/100% 100% no-repeat;
+      background: #050406;
       transition: transform 1s var(--ease) 0.45s;
       /* failsafe: never block content even if JS does not run */
       animation: loader-failsafe 0.1s linear 6.5s forwards;
+    }
+    .loader-ratio-wrapper {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      max-width: 179.167vh;
+      max-height: 55.815vw;
+      aspect-ratio: 2752 / 1536;
+      background:
+        radial-gradient(120% 90% at 50% 36%, rgba(214, 178, 112, 0.15), transparent 58%),
+        radial-gradient(64% 60% at 50% 44%, rgba(44, 35, 19, 0.65), transparent 72%),
+        url('background.jpg') center/contain no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     /* slow light sweeping behind the seal */
     .atelier-loader::before {
@@ -475,7 +490,8 @@
 
     .loader-emblem {
       position: relative;
-      width: 31.4vw; height: 44.02vh;
+      width: 16.71%;
+      height: 27.99%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -483,7 +499,8 @@
     .loader-emblem::before {
       content: "";
       position: absolute;
-      width: 320px; height: 320px;
+      width: 69.57%;
+      aspect-ratio: 1;
       background: radial-gradient(circle, rgba(200, 168, 106, 0.16) 0%, transparent 70%);
       border-radius: 50%;
       z-index: 0;
@@ -496,7 +513,7 @@
     }
     .loader-portrait-wrapper {
       position: absolute;
-      width: 38%;
+      width: 43.48%;
       aspect-ratio: 1;
       border-radius: 50%;
       overflow: hidden;
@@ -516,7 +533,7 @@
       position: absolute;
       inset: 0;
       width: 100%; height: 100%;
-      object-fit: fill;
+      object-fit: contain;
       z-index: 2;
       filter: drop-shadow(0 0 45px rgba(200, 168, 106, 0.35));
       pointer-events: none;
@@ -600,41 +617,32 @@
     /* ===== Loader Flashcards ===== */
     .loader-flashcard {
       position: absolute;
-      width: 13.5vw;
-      height: 31vh;
-      container-type: inline-size;
+      width: 10.175%;
+      height: 18.23%;
+      background-image: url('card-base.png');
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.5));
       opacity: 0;
       pointer-events: none;
       z-index: 5;
       transform-style: preserve-3d;
       backface-visibility: hidden;
-      transition: filter 0.5s ease;
-    }
-    
-    .loader-flashcard.active {
-      filter: drop-shadow(0 0 20px rgba(200, 168, 106, 0.35)) drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
-    }
-
-    .fc-inner {
-      width: 100%;
-      height: 100%;
       border-radius: 24px;
       overflow: hidden;
+      container-type: inline-size;
+
+      /* Inner content alignment */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 8% 6% 8% 6%;
+      padding: 8% 7%;
       box-sizing: border-box;
       text-align: center;
-      background-image: url('card-base.png');
-      background-size: 100% 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
     }
-
-    .fc-inner::before {
+    .loader-flashcard::before {
       content: "";
       position: absolute;
       top: 0; left: -150%;
@@ -652,7 +660,7 @@
       pointer-events: none;
       z-index: 6;
     }
-    .loader-flashcard.active .fc-inner::before {
+    .loader-flashcard.active::before {
       animation: card-shine 4.5s ease-in-out infinite;
       animation-delay: 1.2s;
     }
@@ -664,9 +672,9 @@
 
     /* Icon wrappers & animations inside flashcards */
     .fc-icon-wrapper {
-      width: 42%;
+      width: 38%;
       aspect-ratio: 1;
-      margin-bottom: 5%;
+      margin-bottom: 6%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -717,33 +725,33 @@
 
     .loader-flashcard .fc-label {
       color: #9f8c6b;
-      font-size: 6cqi;
+      font-size: 5cqi;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 2%;
+      margin-bottom: 4px;
       display: block;
       opacity: 0.85;
     }
     .loader-flashcard .fc-value {
       color: #f1dcab;
       font-family: var(--display);
-      font-size: 8.5cqi;
+      font-size: 7.5cqi;
       font-weight: 700;
       line-height: 1.25;
       display: block;
       text-shadow: 0 0 10px rgba(241, 220, 171, 0.4);
     }
     .fc-1 .fc-value {
-      font-size: 8cqi;
-      margin-left: 2%;
+      font-size: 7cqi;
+      margin-left: 6px;
     }
 
-    /* Positions for flashcards centered around central column */
-    .fc-1 { left: calc(23.5% - 6.75vw); top: calc(22.8% - 15.5vh); }
-    .fc-2 { right: calc(23.5% - 6.75vw); top: calc(27.8% - 15.5vh); }
-    .fc-3 { left: calc(23.5% - 6.75vw); top: calc(64.8% - 15.5vh); }
-    .fc-4 { right: calc(23.5% - 6.75vw); top: calc(69.8% - 15.5vh); }
+    /* Positions for flashcards aligned inside empty background slots */
+    .fc-1 { left: 10.174%; top: 18.223%; }
+    .fc-2 { right: 10.174%; top: 18.223%; }
+    .fc-3 { left: 10.174%; top: 63.548%; }
+    .fc-4 { right: 10.174%; top: 63.548%; }
 
     /* Active states when progress reaches thresholds - sequential 3D spin entrance + float */
     .fc-1.active {
@@ -830,6 +838,24 @@
 
     /* Responsive adjustments for smaller screens */
     @media (max-width: 900px) {
+      .loader-ratio-wrapper {
+        max-width: none;
+        max-height: none;
+        aspect-ratio: auto;
+        background:
+          radial-gradient(120% 90% at 50% 36%, rgba(214, 178, 112, 0.15), transparent 58%),
+          radial-gradient(64% 60% at 50% 44%, rgba(44, 35, 19, 0.65), transparent 72%),
+          url('background.jpg') center/cover no-repeat;
+      }
+      .loader-emblem {
+        width: 31.4vw;
+        height: 44.02vh;
+      }
+      .loader-portrait-wrapper {
+        width: 200px;
+        height: 200px;
+        aspect-ratio: auto;
+      }
       .loader-flashcard {
         width: 200px;
         height: 230px;
@@ -840,6 +866,7 @@
         width: 85px;
         height: 85px;
         margin-bottom: 8px;
+        aspect-ratio: auto;
       }
       .loader-flashcard .fc-label { font-size: 0.68rem; margin-bottom: 4px; }
       .loader-flashcard .fc-value { font-size: 0.98rem; }
@@ -1937,57 +1964,51 @@
 <body>
   <!-- Cinematic noble-house loader: The Seal of the House -->
   <div class="atelier-loader" id="atelierLoader" role="presentation" aria-hidden="true">
-    <svg class="loader-connectors" id="loaderConnectors">
-      <defs>
-        <linearGradient id="goldGlowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#fff4d0" />
-          <stop offset="50%" stop-color="#e9d09a" />
-          <stop offset="100%" stop-color="#b89149" />
-        </linearGradient>
-      </defs>
-    </svg>
-    <div class="loader-inner">
-      <div class="loader-emblem">
-        <div class="loader-portrait-wrapper">
-          <img class="loader-portrait-img" src="profile-photo.png?v=3" alt="Portrait of Fırat Akyol" />
+    <div class="loader-ratio-wrapper">
+      <svg class="loader-connectors" id="loaderConnectors">
+        <defs>
+          <linearGradient id="goldGlowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff4d0" />
+            <stop offset="50%" stop-color="#e9d09a" />
+            <stop offset="100%" stop-color="#b89149" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="loader-inner">
+        <div class="loader-emblem">
+          <div class="loader-portrait-wrapper">
+            <img class="loader-portrait-img" src="profile-photo.png?v=3" alt="Portrait of Fırat Akyol" />
+          </div>
+          <img class="loader-rings-img" src="loader-crest-rings.png" alt="Crest Rings of Fırat Akyol" />
         </div>
-        <img class="loader-rings-img" src="loader-crest-rings.png" alt="Crest Rings of Fırat Akyol" />
+        <div class="loader-wordmark" id="loaderWordmark" data-word="ASILZADE" aria-label="Asilzade"></div>
+        <div class="loader-sub">FULL-STACK DEVELOPER</div>
+        <div class="loader-meter"><span class="loader-bar" id="loaderBar"></span></div>
+        <div class="loader-count"><span id="loaderPct">0</span><i>%</i></div>
       </div>
-      <div class="loader-wordmark" id="loaderWordmark" data-word="ASILZADE" aria-label="Asilzade"></div>
-      <div class="loader-sub">FULL-STACK DEVELOPER</div>
-      <div class="loader-meter"><span class="loader-bar" id="loaderBar"></span></div>
-      <div class="loader-count"><span id="loaderPct">0</span><i>%</i></div>
-    </div>
-    <!-- Flashcards around the loader -->
-    <div class="loader-flashcard fc-1">
-      <div class="fc-inner">
+      <!-- Flashcards around the loader -->
+      <div class="loader-flashcard fc-1">
         <div class="fc-icon-wrapper">
           <img class="fc-icon fc-icon-spec" src="loader-icon-spec.png" alt="Specialization Icon" />
         </div>
         <span class="fc-label" data-i18n="fc_label_spec">Specialization</span>
         <span class="fc-value" data-i18n="fc_value_spec">Full-Stack Developer</span>
       </div>
-    </div>
-    <div class="loader-flashcard fc-2">
-      <div class="fc-inner">
+      <div class="loader-flashcard fc-2">
         <div class="fc-icon-wrapper">
           <img class="fc-icon fc-icon-sys" src="loader-icon-sys.png" alt="Systems Icon" />
         </div>
         <span class="fc-label" data-i18n="fc_label_sys">Systems</span>
         <span class="fc-value" data-i18n="fc_value_sys">Noblesse PMS</span>
       </div>
-    </div>
-    <div class="loader-flashcard fc-3">
-      <div class="fc-inner">
+      <div class="loader-flashcard fc-3">
         <div class="fc-icon-wrapper">
           <img class="fc-icon fc-icon-auto" src="loader-icon-auto.png" alt="Automation Icon" />
         </div>
         <span class="fc-label" data-i18n="fc_label_auto">Automation</span>
         <span class="fc-value" data-i18n="fc_value_auto">Python and C#</span>
       </div>
-    </div>
-    <div class="loader-flashcard fc-4">
-      <div class="fc-inner">
+      <div class="loader-flashcard fc-4">
         <div class="fc-icon-wrapper">
           <img class="fc-icon fc-icon-mind" src="loader-icon-mind.png" alt="Mindset Icon" />
         </div>
@@ -3404,13 +3425,17 @@
             const cardCenterY = cardRect.top + cardRect.height / 2 - svgRect.top;
 
             const isLeft = cardCenterX < emblemCenterX;
-            const x1 = isLeft ? (emblemCenterX - 110) : (emblemCenterX + 110);
-            const y1 = emblemCenterY + (index === 0 || index === 1 ? -45 : 45);
+            const xOffset = emblemRect.width * 0.239;
+            const yOffset = emblemRect.height * 0.105;
+            const turnOffset = emblemRect.width * 0.13;
+
+            const x1 = isLeft ? (emblemCenterX - xOffset) : (emblemCenterX + xOffset);
+            const y1 = emblemCenterY + (index === 0 || index === 1 ? -yOffset : yOffset);
 
             const x2 = isLeft ? (cardRect.right - svgRect.left) : (cardRect.left - svgRect.left);
             const y2 = cardCenterY;
 
-            const xTurn = isLeft ? (x1 - 60) : (x1 + 60);
+            const xTurn = isLeft ? (x1 - turnOffset) : (x1 + turnOffset);
             const pathData = `M ${x1} ${y1} L ${xTurn} ${y1} L ${x2} ${y2}`;
 
             const glowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
